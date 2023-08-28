@@ -4,9 +4,8 @@ const Stage = ({
     title,
     items,
     onAddClick,
-    onDeleteClick,
-    onPreviousClick,
     onNextClick,
+    onPreviousClick,
     isPreviousDisabled,
     isNextDisabled,
 }) => {
@@ -15,20 +14,23 @@ const Stage = ({
             <h2>{title}</h2>
             <ul>
                 {items.map((item, index) => (
-                    <li key={index}>
-                        {item}
-                        <button onClick={() => onDeleteClick(index)}>Delete</button>
-                    </li>
+                    <li key={index}>{item}</li>
                 ))}
             </ul>
-            <button onClick={onAddClick}>Add</button>
             <div className="button-container">
-                <button onClick={onPreviousClick} disabled={isPreviousDisabled}>
-                    Previous
-                </button>
-                <button onClick={onNextClick} disabled={isNextDisabled}>
-                    Next
-                </button>
+                {onPreviousClick && (
+                    <button onClick={onPreviousClick} disabled={isPreviousDisabled}>
+                        Previous
+                    </button>
+                )}
+                {onAddClick && (
+                    <button onClick={onAddClick}>Add</button>
+                )}
+                {onNextClick && (
+                    <button onClick={onNextClick} disabled={isNextDisabled}>
+                        Next
+                    </button>
+                )}
             </div>
         </div>
     );
